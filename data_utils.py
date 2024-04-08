@@ -8,7 +8,8 @@ class BreastCancerDataset(Dataset):
     A custom dataset class for breast cancer classification.
 
     Args:
-        file_paths (list): A list of file paths containing the dataset.
+        oncotype_file_paths (list): A list of file paths containing the dataset.
+        cibersort_file_path (str): The file path containing the immune CIBERSORT dataset.
         genes_of_interest (list): A list of genes of interest.
 
     Attributes:
@@ -24,35 +25,45 @@ class BreastCancerDataset(Dataset):
 
     """
 
-    def __init__(self, file_paths, genes_of_interest):
+    def __init__(self, oncotype_file_paths, cibersort_file_path, genes_of_interest):
         # First, determine the common genes present in all datasets [oncotype DX genes]
-        common_genes = self.find_common_genes(file_paths, genes_of_interest)
+        common_genes = self.find_common_genes(oncotype_file_paths, genes_of_interest)
         
         # Initialize an empty DataFrame for samples and an empty array for labels
         self.samples = pd.DataFrame()
-        self.labels = np.array([]).reshape(0, len(file_paths))  # No rows initially, but len(file_paths) columns
+        self.labels = np.array([]).reshape(0, len(oncotype_file_paths))  # No rows initially, but len(oncotype_file_paths) columns
+
+        # Load and normalize the Oncotype DX data
+        oncotype_data, oncotype_labels = self.load_and_normalize_oncotype_data(oncotype_file_paths, common_genes)
+        # Load and normalize the CIBERSORT data
+        cibersort_data = self.load_and_normalize_cibersort_data(cibersort_file_path)
         
+        # Concatenate the normalized features from both datasets
+        self.features = pd.concat([oncotype_data, cibersort_data], axis=1)
+        self.labels = oncotype_labels  # Assuming labels are only relevant from the Oncotype dataset
+
+        # After loading and processing all data, create test indices
+        self.test_indices = self.generate_test_indices(oncotype_file_paths[0], test_size_fraction=0.3)
+
+    def load_and_normalize_oncotype_data(self, oncotype_file_paths, common_genes):
+         # Initialize an empty DataFrame for collecting samples from all files
+        all_samples = pd.DataFrame()
         # Dictionary to map Sample to its index in self.samples and self.labels
         sample_id_to_index = {}
-        
         # Process each file
-        for file_idx, file_path in enumerate(file_paths):
+        for file_idx, file_path in enumerate(oncotype_file_paths):
             df = pd.read_csv(file_path)
-            
             # Assuming the second column contains the actual labels
             actual_labels = df.iloc[:, 1].values
-            
             # Filter columns based on common_genes, ensuring 'Sample' is included
             df = df[['Sample'] + common_genes]
-            
             for i, row in df.iterrows():
                 sample_id = row['Sample']
-                
                 if sample_id not in sample_id_to_index:
                     # New sample, append it
                     self.samples = pd.concat([self.samples, pd.DataFrame([row])], ignore_index=True)
                     # Initialize a new label row with zeros and set the label for the current file
-                    new_label_row = np.zeros(len(file_paths))
+                    new_label_row = np.zeros(len(oncotype_file_paths))
                     new_label_row[file_idx] = actual_labels[i]
                     self.labels = np.vstack([self.labels, new_label_row])
                     
@@ -67,15 +78,40 @@ class BreastCancerDataset(Dataset):
         self.samples.drop('Sample', axis=1, inplace=True)
         
         # Normalize features
-        self.features = self.samples
-        self.normalize_features()
+        all_samples = self.samples
+        labels = self.labels
+        normalized_features = (all_samples - all_samples.mean()) / all_samples.std()
+        return normalized_features, labels
 
-    def find_common_genes(self, file_paths, genes_of_interest):
+    def load_and_normalize_cibersort_data(self, file_paths):
+        # code to load CIBERSORT data, apply normalization, and return it
+        # Initialize an empty DataFrame for collecting samples from all files
+        all_samples = pd.DataFrame()
+        
+        # Process each file
+        for file_path in file_paths:
+            # Load the dataset from the current file
+            df = pd.read_csv(file_path)
+            cibersort_features = [col for col in df.columns if col.startswith("CIBERSORT")]
+            
+            # Filter columns based on cibersort_features, ensuring 'Sample' is included
+            filtered_df = df[['Sample'] + cibersort_features]
+
+            # Append the current file's data and labels to the collective DataFrame and list
+            all_samples = pd.concat([all_samples, filtered_df], ignore_index=True)
+           # After concatenating data from all files, drop the 'Sample' column
+        all_samples.drop('Sample', axis=1, inplace=True)
+
+        # Normalize the features using Z-score normalization
+        normalized_features = (all_samples - all_samples.mean()) / all_samples.std()
+        return normalized_features
+            
+    def find_common_genes(self, oncotype_file_paths, genes_of_interest):
         """
         Find the common genes present in all datasets.
 
         Args:
-            file_paths (list): A list of file paths containing the dataset.
+            oncotype_file_paths (list): A list of file paths containing the dataset.
             genes_of_interest (list): A list of genes of interest.
 
         Returns:
@@ -83,7 +119,7 @@ class BreastCancerDataset(Dataset):
 
         """
         common_genes = set(genes_of_interest)
-        for file_path in file_paths:
+        for file_path in oncotype_file_paths:
             df = pd.read_csv(file_path)
             common_genes &= set(df.columns)
         return list(common_genes)
@@ -120,3 +156,28 @@ class BreastCancerDataset(Dataset):
         features = torch.tensor(self.features.iloc[idx].values, dtype=torch.float)
         label = torch.tensor(self.labels[idx], dtype=torch.float)
         return features, label
+    
+    def generate_test_indices(self, first_file_path, test_size_fraction):
+        """
+        Generate indices for a test set based on the first file.
+
+        Args:
+            first_file_path (str): The file path for the first dataset.
+            test_size_fraction (float): The fraction of the first file's samples to use for the test set.
+
+        Returns:
+            np.array: An array of indices for the test set.
+        """
+        # Read the first file to get the sample size
+        df_first_file = pd.read_csv(first_file_path)
+        total_samples = len(df_first_file)
+        
+        # Calculate the number of test samples
+        test_samples_count = int(total_samples * test_size_fraction)
+        
+        # Generate random indices for the test set
+        # Ensure reproducibility with np.random.seed
+        np.random.seed(42)  # Or any seed of your choice
+        test_indices = np.random.choice(range(total_samples), size=test_samples_count, replace=False)
+        
+        return test_indices
