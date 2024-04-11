@@ -13,27 +13,27 @@ base_name=$(basename "$main_task_file" .csv) # Extract base name without extensi
 for i in {0..29}
 do
     echo "Running iteration with seed $i"
-    python oncotypedx_MLC_aux_learn.py --mccv=$i --main_task_file="$main_task_file"
+    python oncotypedx_MLC_adaloss.py --mccv=$i --main_task_file="$main_task_file"
 done
 
 echo "All iterations completed."
 
 # Concatenate all files into one, including the header from the first file
-echo "AUROC,AUPR" > "./output/oncotypedx_aux_learn/AUX_combined_${base_name}.csv"
+echo "AUROC,AUPR" > "./output/oncotypedx_adaloss/adaloss_combined_${base_name}.csv"
 for i in {0..29}
 do
     # Skip header (first line) for all files except the first one
     if [ $i -eq 0 ]; then
-        cat "./output/MCCV_oncotype_aux_learn_${base_name}_$i.csv" >> "./output/oncotypedx_aux_learn/AUX_combined_${base_name}.csv"
+        cat "./output/MCCV_oncotype_adaloss_${base_name}_$i.csv" >> "./output/oncotypedx_adaloss/adaloss_combined_${base_name}.csv"
     else
-        tail -n +2 "./output/MCCV_oncotype_aux_learn_${base_name}_$i.csv" >> "./output/oncotypedx_aux_learn/AUX_combined_${base_name}.csv"
+        tail -n +2 "./output/MCCV_oncotype_adaloss_${base_name}_$i.csv" >> "./output/oncotypedx_adaloss/adaloss_combined_${base_name}.csv"
     fi
 done
 
 # Remove the individual files
 for i in {0..29}
 do
-    rm "./output/MCCV_oncotype_aux_learn_${base_name}_$i.csv"
+    rm "./output/MCCV_oncotype_adaloss_${base_name}_$i.csv"
 done
 
 echo "Files concatenated and original files removed."
@@ -45,7 +45,7 @@ echo "Files concatenated and original files removed."
 # for i in {0..29}
 # do
 #     echo "Running iteration with seed $i"
-#     python oncotypedx_MLC_aux_learn_prototype.py --mccv=$i --main_task_file='GSE164458_paclitaxel.csv'
+#     python oncotypedx_MLC_adaloss_prototype.py --mccv=$i --main_task_file='GSE164458_paclitaxel.csv'
 # done
 
 # echo "All iterations completed."

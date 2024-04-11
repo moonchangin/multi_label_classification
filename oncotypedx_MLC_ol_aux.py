@@ -152,16 +152,18 @@ for epoch in range(num_epochs):
             scheduler.step()
         if iteration % 5 == 0: #default is 20
             optimizer.zero_grad()  # clear gradient in model params
-            weight_loss = task_weighter.weight_loss(model, losses, 'arml')
+            weight_loss = task_weighter.weight_loss(model, losses, "ol_aux")
             for param in model.parameters():
                 param.requires_grad = False
             optimizer_task_weighter.zero_grad()
             weight_loss.backward()
             optimizer_task_weighter.step()
-            task_weighter.alpha.data = task_weighter.alpha.data + (num_labels - task_weighter.alpha.data.sum()) / num_labels
+            # task_weighter.alpha.data = task_weighter.alpha.data + (num_labels - task_weighter.alpha.data.sum()) / num_labels #ARML
+            # task_weighter.alpha.data = task_weighter.alpha.data * num_labels / task_weighter.alpha.data.sum()  # GradNorm
+            task_weighter.alpha.data = torch.clamp(task_weighter.alpha.data, 0)
             for param in model.parameters():
                 param.requires_grad = True
-            task_weighter.alpha.data = torch.clamp(task_weighter.alpha.data, 0)
+            # task_weighter.alpha.data = torch.clamp(task_weighter.alpha.data, 0)
     # the validation AUROC calculation for multi-label setup
     # Initialize lists to store true and predicted values
     all_targets = []

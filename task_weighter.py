@@ -55,14 +55,14 @@ class Task_Weighter(nn.Module):
                 param.grad.data = param.grad.data + \
                                   torch.randn_like(param.grad.data) * noise_var**0.5 * (1 - momentum)**0.5 / lr * (param.grad.data**2)**0.25 # Inject noise into the gradient
 
-    def weight_loss(self, model, losses, reweight_alg): # Compute the weighted loss based on the given algorithm
+    def weight_loss(self, model, losses, reweight_alg='arml'): # Compute the weighted loss based on the given algorithm
         weight_loss = None
-        # if reweight_alg == 'arml':
-        weight_loss = self.arml_weight_loss(model, losses) # ARML
-        # elif reweight_alg == 'gradnorm':
-        #     weight_loss = self.gradnorm_weight_loss(model, losses)  # gradnorm
-        # elif reweight_alg == 'ol_aux':
-        #     weight_loss = self.ol_aux_weight_loss(model, losses)  # ol_aux
+        if reweight_alg == 'arml': #default
+            weight_loss = self.arml_weight_loss(model, losses) # ARML
+        elif reweight_alg == 'gradnorm':
+            weight_loss = self.gradnorm_weight_loss(model, losses)  # gradnorm
+        elif reweight_alg == 'ol_aux':
+            weight_loss = self.ol_aux_weight_loss(model, losses)  # ol_aux
         return weight_loss
 
     def arml_weight_loss(self, model, losses): # Compute the ARML weight loss
@@ -72,14 +72,25 @@ class Task_Weighter(nn.Module):
         loss_grad_gap = grad(main_loss - (aux_loss * self.alpha).sum(), model.parameters(), 
                           create_graph=True, allow_unused=True)
         # Compute the alpha loss
-        alpha_loss = sum([grd.norm()**2 for grd in loss_grad_gap[:-3]]) # default is 6; but with 3 tasks, it should be 3
+        alpha_loss = sum([grd.norm()**2 for grd in loss_grad_gap[:-5]]) # default is 6; 5 is the last layer
         return alpha_loss
 
-    def ada_loss_forward(self, model, losses): # Compute the AdaLoss weight loss
-        main_loss = losses[0]
-        losses[2] = losses[2] + 1
-        aux_loss = torch.log(torch.stack(losses[1:], dim=0) + 1e-6)
+    # def ada_loss_forward(self, model, losses): # Compute the AdaLoss weight loss
+    #     main_loss = losses[0]
+    #     losses[2] = losses[2] + 1
+    #     aux_loss = torch.log(torch.stack(losses[1:], dim=0) + 1e-6)
+    #     return main_loss + (aux_loss * self.alpha).sum()
+    def ada_loss_forward(self, model, losses):
+        losses_list = list(losses)# Convert the tuple of losses to a list for mutability
+        
+        # Perform the original operations using the list
+        main_loss = losses_list[0]
+        losses_list[2] = losses_list[2] + 1  # This is now possible
+        aux_loss = torch.log(torch.stack(losses_list[1:], dim=0) + 1e-6)
+        
+        # Return the sum of the main loss and weighted auxiliary losses
         return main_loss + (aux_loss * self.alpha).sum()
+
 
     def gradnorm_weight_loss(self, model, losses):
         main_loss = losses[0]
@@ -91,7 +102,7 @@ class Task_Weighter(nn.Module):
         alpha_loss = 0
         grad_norms = []
         for i in range(1, self.task_num):
-            grad_i = grad(aux_loss[i - 1], model.unit3.parameters(),
+            grad_i = grad(aux_loss[i - 1], model.layer2.parameters(),
                             create_graph=True, allow_unused=True)
             grad_norms.append(self.alpha[i - 1] * grad_i[-1].detach().norm())
 
@@ -102,13 +113,14 @@ class Task_Weighter(nn.Module):
         return alpha_loss
 
     def cosine_similarity_forward(self, model, losses, if_update_weight):
+        losses = list(losses)# Convert the tuple of losses to a list for mutability
         main_loss = losses[0]
         aux_loss = torch.stack(losses[1:], dim=0)
 
         if if_update_weight:
-            main_grad = grad(main_loss, model.unit3.parameters(), retain_graph=True)[-1].detach()
+            main_grad = grad(main_loss, model.layer2.parameters(), retain_graph=True)[-1].detach() # 'MLCModel' object has no attribute 'unit3'
             for i in range(1, self.task_num):
-                grad_i = grad(aux_loss[i - 1], model.unit3.parameters(), retain_graph=(i < self.task_num - 1))[-1].detach()
+                grad_i = grad(aux_loss[i - 1], model.layer2.parameters(), retain_graph=(i < self.task_num - 1))[-1].detach()
                 self.alpha.data[i - 1] = int((grad_i * main_grad).sum() > 0)
 
         return main_loss + (aux_loss * self.alpha).sum()
@@ -123,7 +135,7 @@ class Task_Weighter(nn.Module):
                           create_graph=True, allow_unused=True)
 
         alpha_loss = 0
-        for main_grad, aux_grad in zip(main_loss_grads[:-6], aux_loss_grads[:-6]):
+        for main_grad, aux_grad in zip(main_loss_grads[:-5], aux_loss_grads[:-5]): #default is 6; 5 is the last layer
             alpha_loss += -(main_grad.detach() * aux_grad).sum()
         return alpha_loss
 

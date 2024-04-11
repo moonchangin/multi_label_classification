@@ -3,7 +3,6 @@ import pandas as pd
 import seaborn as sns
 from tqdm.notebook import tqdm
 import matplotlib.pyplot as plt
-import copy
 
 import torch
 import torch.nn as nn
@@ -12,11 +11,15 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader, Dataset, random_split
 from sklearn.metrics import roc_auc_score, average_precision_score
 from data_utils import BreastCancerDataset
-from models import STLModel
+from models import MLCModel
 import time
 import glob
 import copy
 import argparse
+
+# import auxlearn scripts
+from task_weighter import task_weighter
+
 
 parser = argparse.ArgumentParser(description='Run model with different seeds.')
 parser.add_argument('--mccv', type=int, default=1, help='Seed for the random number generator', required=True)
@@ -59,26 +62,18 @@ file_paths_unsorted = glob.glob('./clindb_breast/*.csv')
 file_paths = sorted(file_paths_unsorted, key=lambda x: (args.main_task_file not in x, x))
 # Generate immune_paths based on the file_paths
 immune_paths = ['./immune_profile/immune_' + fp.split('/')[-1] for fp in file_paths]
-# file_paths = [
-#     'brightness_input/GSE164458/GSE164458_paclitaxel.csv',
-#     'brightness_input/GSE164458/GSE164458_carboplatin_paclitaxel.csv',
-#     'brightness_input/GSE164458/GSE164458_veliparib_carboplatin_paclitaxel.csv'
-# ]
-
-# immune_paths = ['immune_profile/immune_GSE164458_paclitaxel.csv',
-#                 'immune_profile/immune_GSE164458_carboplatin_paclitaxel.csv',
-#                 'immune_profile/immune_GSE164458_veliparib_carboplatin_paclitaxel.csv']
 
 # Create the dataset
 dataset = BreastCancerDataset(oncotype_file_paths=file_paths, cibersort_file_path= immune_paths, genes_of_interest=genes_21)
+#  dataset.test_indices contains the indices for the main task test set
 # Initialize lists to store AUROC and AUPR values for each MCCV iteration
 auroc_list = []
 aupr_list = []
 # test_indices = dataset.test_indices # Test indices for the main task (30%)
 test_indices = generate_test_indices(file_paths[0], test_size_fraction=0.3, seed=args.mccv)
 
-# All indices in the main task dataset for single task learning
-all_indices = np.arange(len(pd.read_csv(file_paths[0])))
+# All indices in the dataset
+all_indices = np.arange(len(dataset))
 
 # Exclude test indices to find the remaining ones for train/validation
 remaining_indices = np.setdiff1d(all_indices, test_indices)
@@ -98,6 +93,7 @@ val_indices = remaining_indices[num_train:]
 train_subset = torch.utils.data.Subset(dataset, train_indices)
 val_subset = torch.utils.data.Subset(dataset, val_indices)
 test_subset = torch.utils.data.Subset(dataset, test_indices)
+
 # Create DataLoaders for train, validation, and test sets
 train_loader = DataLoader(train_subset, batch_size=50, shuffle=True) # default is 128
 val_loader = DataLoader(val_subset, batch_size=50, shuffle=False)
@@ -105,10 +101,14 @@ test_loader = DataLoader(test_subset, batch_size=9999 , shuffle=False) # Batch s
 
 # Instantiate the model
 num_features = dataset.features.shape[1]
-num_labels = dataset.labels.shape[1]
-model = STLModel(num_features, num_labels)
+num_labels = len(file_paths)
+model = MLCModel(num_features, num_labels)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
+
+# Initialize Task Weighter
+task_weighter = task_weighter(num_labels).to(device)  # +1 if considering an additional task or just use num_labels based on your setup
+optimizer_task_weighter = optim.SGD(task_weighter.parameters(), lr=0.1)  # Adjust learning rate as needed # default is 0.01
 
 # Define the criterion and optimizer
 criterion = nn.BCEWithLogitsLoss()
@@ -118,38 +118,53 @@ optimizer = optim.SGD(model.parameters(), lr=0.1, weight_decay=1e-4)
 # Define a learning rate scheduler
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=1e-3)
 
-# Training loop
+# ARML parameters
+iteration = 0
+num_epochs = 100
+
 # Early stopping parameters
 patience = 10  # Number of epochs to wait for improvement before stopping
 best_val_auroc = 0.0  # Best validation AUROC seen so far
 epochs_without_improvement = 0  # Tracks epochs without improvement
 best_model_state = copy.deepcopy(model.state_dict())  # To save the best model state
-num_epochs = 100
+
 for epoch in range(num_epochs):
     model.train()  # Set model to training mode
-    for inputs, labels in train_loader:
-        inputs, labels = inputs.to(device), labels.to(device)
-        label = labels.squeeze(1)  # Use only the first label
-        optimizer.zero_grad()
-        outputs = model(inputs)
-        loss = criterion(outputs, label)
-        loss.backward()
-        optimizer.step()
-        scheduler.step()
-    
-    # Validation
-    model.eval()  # Set model to evaluation mode
-    val_targets = []
-    val_outputs = []
-    with torch.no_grad():
-        for inputs, labels in val_loader:
-            inputs, labels = inputs.to(device), labels.to(device)
-            label = labels.squeeze(1)  # Use only the first label
-            outputs = model(inputs)
-            val_outputs.extend(outputs.sigmoid().cpu().numpy())
-            val_targets.extend(label.cpu().numpy())
+    for l_data in train_loader:
+        iteration += 1
+        l_input, target = l_data
+        l_input, target = l_input.to(device).float(), target.to(device).float()
+        outputs = model(l_input)  # Get model predictions
 
-    # the validation AUROC for the main task
+        losses = []  # List to accumulate task-specific losses
+        for i in range(num_labels):  # Calculate loss for each label (task)
+            cls_loss = criterion(outputs[:, i], target[:, i])
+            losses.append(cls_loss)  # Store each task loss directly as a tensor
+        loss = task_weighter(tuple(losses))  # Apply task weighting by converting list to tuple
+        # update model / task_weighter
+        if iteration % 5 != 0: #default is 20
+            optimizer.zero_grad()
+            loss.backward()
+            if iteration < 40: # Add noise to gradients for Lagrange method # default is 50000 
+                task_weighter.inject_grad_noise(model, 2 * optimizer.param_groups[0]['lr'] * (1 - 0.9) / len(l_input),
+                                                optimizer.param_groups[0]['lr'], 0.9)
+            optimizer.step()
+            scheduler.step()
+        if iteration % 5 == 0: #default is 20
+            optimizer.zero_grad()  # clear gradient in model params
+            weight_loss = task_weighter.weight_loss(model, losses, "gradnorm")
+            for param in model.parameters():
+                param.requires_grad = False
+            optimizer_task_weighter.zero_grad()
+            weight_loss.backward()
+            optimizer_task_weighter.step()
+            # task_weighter.alpha.data = task_weighter.alpha.data + (num_labels - task_weighter.alpha.data.sum()) / num_labels #ARML
+            task_weighter.alpha.data = task_weighter.alpha.data * num_labels / task_weighter.alpha.data.sum()  # GradNorm
+            task_weighter.alpha.data = torch.clamp(task_weighter.alpha.data, 0)
+            for param in model.parameters():
+                param.requires_grad = True
+            # task_weighter.alpha.data = torch.clamp(task_weighter.alpha.data, 0)
+    # the validation AUROC calculation for multi-label setup
     # Initialize lists to store true and predicted values
     all_targets = []
     all_outputs = []
@@ -171,7 +186,7 @@ for epoch in range(num_epochs):
     all_outputs = np.concatenate(all_outputs, axis=0)
     all_targets = np.concatenate(all_targets, axis=0)
 
-    # Compute AUROC for the main task
+    # Compute AUROC for main task label
     auroc = roc_auc_score(all_targets[:, 0], all_outputs[:, 0])
     print(f'Epoch {epoch+1}, Validation AUROC: {auroc:.4f}')
 
@@ -232,39 +247,5 @@ results_df = pd.DataFrame({
 # # Save the DataFrame to a CSV file
 # remove .csv
 main_task_name = args.main_task_file.replace('.csv', '')
-results_df.to_csv(f'./output/MCCV_oncotype_STL_learn_{main_task_name}_{args.mccv}.csv', index=False)
+results_df.to_csv(f'./output/MCCV_oncotype_aux_learn_{main_task_name}_{args.mccv}.csv', index=False)
 
-
-
-    # Calculate validation metrics
-#     val_auroc = roc_auc_score(val_targets, val_outputs, average='macro')
-#     print(f'Epoch {epoch+1}, Validation AUROC: {val_auroc:.4f}')
-
-#     # Early Stopping Check
-#     if val_auroc > best_val_auroc:
-#         best_val_auroc = val_auroc
-#         epochs_without_improvement = 0
-#         best_model_state = copy.deepcopy(model.state_dict())  # Save the best model state
-#         print(f"Validation AUROC improved to {val_auroc:.4f}, saving model...")
-#     else:
-#         epochs_without_improvement += 1
-#         print(f"Validation AUROC did not improve. Patience: {epochs_without_improvement}/{patience}")
-#         if epochs_without_improvement >= patience:
-#             print("Early stopping triggered.")
-#             break
-# # Test evaluation
-# test_targets = []
-# test_outputs = []
-# with torch.no_grad():
-#     model.eval()  # Ensure model is in evaluation mode
-#     for inputs, labels in test_loader:
-#         inputs, labels = inputs.to(device), labels.to(device)
-#         label = labels.squeeze(1)  # Use only the first label
-#         outputs = model(inputs)
-#         test_outputs.extend(outputs.sigmoid().cpu().numpy())
-#         test_targets.extend(label.cpu().numpy())
-
-# # Calculate test metrics
-# test_auroc = roc_auc_score(test_targets, test_outputs, average='macro')  # Adjust as necessary
-# test_aupr = average_precision_score(test_targets, test_outputs, average='macro')  # Adjust as necessary
-# print(f'Test AUROC: {test_auroc:.4f}, Test AUPR: {test_aupr:.4f}')
