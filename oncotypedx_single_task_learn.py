@@ -11,7 +11,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 from torch.utils.data import DataLoader, Dataset, random_split
 from sklearn.metrics import roc_auc_score, average_precision_score
-from data_utils import BreastCancerDataset
+from data_utils import BreastCancerDataset, EarlyStopping
 from models import STLModel
 import time
 import glob
@@ -59,15 +59,6 @@ file_paths_unsorted = glob.glob('./clindb_breast/*.csv')
 file_paths = sorted(file_paths_unsorted, key=lambda x: (args.main_task_file not in x, x))
 # Generate immune_paths based on the file_paths
 immune_paths = ['./immune_profile/immune_' + fp.split('/')[-1] for fp in file_paths]
-# file_paths = [
-#     'brightness_input/GSE164458/GSE164458_paclitaxel.csv',
-#     'brightness_input/GSE164458/GSE164458_carboplatin_paclitaxel.csv',
-#     'brightness_input/GSE164458/GSE164458_veliparib_carboplatin_paclitaxel.csv'
-# ]
-
-# immune_paths = ['immune_profile/immune_GSE164458_paclitaxel.csv',
-#                 'immune_profile/immune_GSE164458_carboplatin_paclitaxel.csv',
-#                 'immune_profile/immune_GSE164458_veliparib_carboplatin_paclitaxel.csv']
 
 # Create the dataset
 dataset = BreastCancerDataset(oncotype_file_paths=file_paths, cibersort_file_path= immune_paths, genes_of_interest=genes_21)
@@ -120,80 +111,52 @@ scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=1e-3)
 
 # Training loop
 # Early stopping parameters
-patience = 10  # Number of epochs to wait for improvement before stopping
-best_val_auroc = 0.0  # Best validation AUROC seen so far
-epochs_without_improvement = 0  # Tracks epochs without improvement
-best_model_state = copy.deepcopy(model.state_dict())  # To save the best model state
 num_epochs = 100
+early_stopping = EarlyStopping(patience = 10, verbose=True, chkpoint_name = "./tmp/best.pt")
+
 for epoch in range(num_epochs):
     model.train()  # Set model to training mode
     for inputs, labels in train_loader:
-        inputs, labels = inputs.to(device), labels.to(device)
-        label = labels.squeeze(1)  # Use only the first label
+        inputs, labels = inputs.to(device), labels[:, 0].to(device)
+        # label = labels.squeeze(1)  # Use only the first label
         optimizer.zero_grad()
         outputs = model(inputs)
-        loss = criterion(outputs, label)
+        loss = criterion(outputs[:, 0], labels)
         loss.backward()
         optimizer.step()
         scheduler.step()
     
-    # Validation
+   # Validation
     model.eval()  # Set model to evaluation mode
+    val_loss = 0.0
+    val_steps = 0
     val_targets = []
     val_outputs = []
     with torch.no_grad():
         for inputs, labels in val_loader:
-            inputs, labels = inputs.to(device), labels.to(device)
-            label = labels.squeeze(1)  # Use only the first label
+            inputs, labels = inputs.to(device), labels[:, 0].to(device)
             outputs = model(inputs)
-            val_outputs.extend(outputs.sigmoid().cpu().numpy())
-            val_targets.extend(label.cpu().numpy())
+            loss = criterion(outputs[:, 0], labels)  # Calculate the loss
+            val_loss += loss.item()
+            val_steps += 1
+            val_outputs.extend(outputs[:, 0].sigmoid().cpu().numpy())
+            val_targets.extend(labels.cpu().numpy())
 
-    # the validation AUROC for the main task
-    # Initialize lists to store true and predicted values
-    all_targets = []
-    all_outputs = []
-    with torch.no_grad():
-        for data in val_loader:
-            inputs, targets = data
-            inputs, targets = inputs.to(device).float(), targets.to(device).float()
+    # Calculate the average validation loss
+    validation_binary_loss_entropy_loss = val_loss / val_steps
+    print(f'Validation Loss: {validation_binary_loss_entropy_loss}')
 
-            # Forward pass
-            outputs = model(inputs)
-            # Apply sigmoid since BCEWithLogitsLoss was used
-            probabilities = torch.sigmoid(outputs)
+    # Call EarlyStopping
+    early_stopping(validation_binary_loss_entropy_loss, model)
 
-            # Store probabilities and targets to compute AUROC later
-            all_outputs.append(probabilities.cpu().numpy())
-            all_targets.append(targets.cpu().numpy())
-
-    # Concatenate all batch outputs and targets to compute overall metrics
-    all_outputs = np.concatenate(all_outputs, axis=0)
-    all_targets = np.concatenate(all_targets, axis=0)
-
-    # Compute AUROC for the main task
-    auroc = roc_auc_score(all_targets[:, 0], all_outputs[:, 0])
-    print(f'Epoch {epoch+1}, Validation AUROC: {auroc:.4f}')
-
-    # Early Stopping Check
-    if auroc > best_val_auroc:
-        best_val_auroc = auroc
-        epochs_without_improvement = 0
-        best_model_state = copy.deepcopy(model.state_dict())
-        print(f"Validation AUROC improved to {auroc:.4f}, saving model...")
-    if auroc > 0.7:
-        print("Validation AUROC is greater than 0.7. Stopping early.") # prevent overfitting
+    if early_stopping.early_stop:
+        print("Early stopping")
         break
-    else:
-        epochs_without_improvement += 1
-        print(f"Validation AUROC did not improve. Patience: {epochs_without_improvement}/{patience}")
-        if epochs_without_improvement >= patience:
-            print("Early stopping triggered.")
-            break
 
 # After completing the training loop, or if early stopping was triggered,
 # you may want to load the best model state for further use or evaluation:
-model.load_state_dict(best_model_state)
+checkpoint = torch.load("./tmp/best.pt")
+model.load_state_dict(checkpoint)
 # test
 print("### Test Evaluation ###")
 test_targets = []
@@ -233,38 +196,3 @@ results_df = pd.DataFrame({
 # remove .csv
 main_task_name = args.main_task_file.replace('.csv', '')
 results_df.to_csv(f'./output/MCCV_oncotype_STL_learn_{main_task_name}_{args.mccv}.csv', index=False)
-
-
-
-    # Calculate validation metrics
-#     val_auroc = roc_auc_score(val_targets, val_outputs, average='macro')
-#     print(f'Epoch {epoch+1}, Validation AUROC: {val_auroc:.4f}')
-
-#     # Early Stopping Check
-#     if val_auroc > best_val_auroc:
-#         best_val_auroc = val_auroc
-#         epochs_without_improvement = 0
-#         best_model_state = copy.deepcopy(model.state_dict())  # Save the best model state
-#         print(f"Validation AUROC improved to {val_auroc:.4f}, saving model...")
-#     else:
-#         epochs_without_improvement += 1
-#         print(f"Validation AUROC did not improve. Patience: {epochs_without_improvement}/{patience}")
-#         if epochs_without_improvement >= patience:
-#             print("Early stopping triggered.")
-#             break
-# # Test evaluation
-# test_targets = []
-# test_outputs = []
-# with torch.no_grad():
-#     model.eval()  # Ensure model is in evaluation mode
-#     for inputs, labels in test_loader:
-#         inputs, labels = inputs.to(device), labels.to(device)
-#         label = labels.squeeze(1)  # Use only the first label
-#         outputs = model(inputs)
-#         test_outputs.extend(outputs.sigmoid().cpu().numpy())
-#         test_targets.extend(label.cpu().numpy())
-
-# # Calculate test metrics
-# test_auroc = roc_auc_score(test_targets, test_outputs, average='macro')  # Adjust as necessary
-# test_aupr = average_precision_score(test_targets, test_outputs, average='macro')  # Adjust as necessary
-# print(f'Test AUROC: {test_auroc:.4f}, Test AUPR: {test_aupr:.4f}')

@@ -7,7 +7,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["--mccv=1", "--main_task_file=GSE164458_paclitaxel.csv"]
+            "args": ["--mccv=30", "--main_task_file=GSE164458_veliparib_carboplatin_paclitaxel.csv"]
         }
     ]
 }

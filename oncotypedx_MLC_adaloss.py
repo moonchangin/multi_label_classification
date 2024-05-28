@@ -10,7 +10,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 from torch.utils.data import DataLoader, Dataset, random_split
 from sklearn.metrics import roc_auc_score, average_precision_score
-from data_utils import BreastCancerDataset
+from data_utils import BreastCancerDataset, EarlyStopping
 from models import MLCModel
 import time
 import glob
@@ -118,15 +118,12 @@ optimizer = optim.SGD(model.parameters(), lr=0.1, weight_decay=1e-4)
 # Define a learning rate scheduler
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=1e-3)
 
-# ARML parameters
+# parameters
 iteration = 0
 num_epochs = 100
 
 # Early stopping parameters
-patience = 10  # Number of epochs to wait for improvement before stopping
-best_val_auroc = 0.0  # Best validation AUROC seen so far
-epochs_without_improvement = 0  # Tracks epochs without improvement
-best_model_state = copy.deepcopy(model.state_dict())  # To save the best model state
+early_stopping = EarlyStopping(patience = 10, verbose=True, chkpoint_name = "./tmp/best.pt")
 
 for epoch in range(num_epochs):
     model.train()  # Set model to training mode
@@ -164,51 +161,38 @@ for epoch in range(num_epochs):
             for param in model.parameters():
                 param.requires_grad = True
             # task_weighter.alpha.data = torch.clamp(task_weighter.alpha.data, 0)
-    # the validation AUROC calculation for multi-label setup
-    # Initialize lists to store true and predicted values
-    all_targets = []
-    all_outputs = []
+    # Validation
+    model.eval()  # Set model to evaluation mode
+    val_loss = 0.0
+    val_steps = 0
+    val_targets = []
+    val_outputs = []
     with torch.no_grad():
-        for data in val_loader:
-            inputs, targets = data
-            inputs, targets = inputs.to(device).float(), targets.to(device).float()
-
-            # Forward pass
+        for inputs, labels in val_loader:
+            inputs, labels = inputs.to(device), labels.to(device)
             outputs = model(inputs)
-            # Apply sigmoid since BCEWithLogitsLoss was used
-            probabilities = torch.sigmoid(outputs)
+            loss = criterion(outputs, labels.squeeze(1))  # Calculate the loss
+            val_loss += loss.item()
+            val_steps += 1
+            val_outputs.extend(outputs.sigmoid().cpu().numpy())
+            val_targets.extend(labels.cpu().numpy())
 
-            # Store probabilities and targets to compute AUROC later
-            all_outputs.append(probabilities.cpu().numpy())
-            all_targets.append(targets.cpu().numpy())
+    # Calculate the average validation loss
+    validation_binary_loss_entropy_loss = val_loss / val_steps
+    print(f'Validation Loss: {validation_binary_loss_entropy_loss}')
 
-    # Concatenate all batch outputs and targets to compute overall metrics
-    all_outputs = np.concatenate(all_outputs, axis=0)
-    all_targets = np.concatenate(all_targets, axis=0)
+    # Call EarlyStopping
+    early_stopping(validation_binary_loss_entropy_loss, model)
 
-    # Compute AUROC for main task label
-    auroc = roc_auc_score(all_targets[:, 0], all_outputs[:, 0])
-    print(f'Epoch {epoch+1}, Validation AUROC: {auroc:.4f}')
-
-    # Early Stopping Check
-    if auroc > best_val_auroc:
-        best_val_auroc = auroc
-        epochs_without_improvement = 0
-        best_model_state = copy.deepcopy(model.state_dict())
-        print(f"Validation AUROC improved to {auroc:.4f}, saving model...")
-    if auroc > 0.7:
-        print("Validation AUROC is greater than 0.7. Stopping early.") # prevent overfitting
+    if early_stopping.early_stop:
+        print("Early stopping")
         break
-    else:
-        epochs_without_improvement += 1
-        print(f"Validation AUROC did not improve. Patience: {epochs_without_improvement}/{patience}")
-        if epochs_without_improvement >= patience:
-            print("Early stopping triggered.")
-            break
 
 # After completing the training loop, or if early stopping was triggered,
 # you may want to load the best model state for further use or evaluation:
-model.load_state_dict(best_model_state)
+checkpoint = torch.load("./tmp/best.pt")
+model.load_state_dict(checkpoint)
+
 # test
 print("### Test Evaluation ###")
 test_targets = []
@@ -247,5 +231,5 @@ results_df = pd.DataFrame({
 # # Save the DataFrame to a CSV file
 # remove .csv
 main_task_name = args.main_task_file.replace('.csv', '')
-results_df.to_csv(f'./output/MCCV_oncotype_aux_learn_{main_task_name}_{args.mccv}.csv', index=False)
+results_df.to_csv(f'./output/MCCV_oncotype_adaloss_{main_task_name}_{args.mccv}.csv', index=False)
 

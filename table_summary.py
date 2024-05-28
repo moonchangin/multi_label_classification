@@ -27,21 +27,32 @@ def calculate_summary(folder_path, learning_type, prefix):
 # Prefixes used in the study names
 stl_prefix = "STL_combined_"
 aux_prefix = "AUX_combined_"
+adaloss_prefix = "adaloss_combined_"
+gradnorm_prefix = "gradnorm_combined_"
+ol_aux_prefix = "ol_aux_combined_"
 
-# Calculate summaries for both learning types
+# Calculate summaries for all learning types
 aux_learn_summary = calculate_summary("./output/oncotypedx_aux_learn", "aux_learn", aux_prefix)
 stl_learn_summary = calculate_summary("./output/oncotypedx_stl_learn", "stl_learn", stl_prefix)
+adaloss_learn_summary = calculate_summary("./output/oncotypedx_adaloss", "adaloss_learn", adaloss_prefix)
+gradnorm_learn_summary = calculate_summary("./output/oncotypedx_gradnorm", "gradnorm_learn", gradnorm_prefix)
+ol_aux_learn_summary = calculate_summary("./output/oncotypedx_ol_aux", "ol_aux_learn", ol_aux_prefix)
 
-# Merge summaries on the 'Study' column to compare
-final_summary = pd.merge(aux_learn_summary, stl_learn_summary, on="Study", how='outer')
+# # Merge summaries and restrict to common studies
+# common_studies = set(gradnorm_learn_summary['Study']).intersection(ol_aux_learn_summary['Study'])
+# filtered_aux = aux_learn_summary[aux_learn_summary['Study'].isin(common_studies)]
+# filtered_stl = stl_learn_summary[stl_learn_summary['Study'].isin(common_studies)]
+# filtered_adaloss = adaloss_learn_summary[adaloss_learn_summary['Study'].isin(common_studies)]
 
-# Calculate the difference between aux_learn_AUC_Mean and stl_learn_AUC_Mean
-final_summary['AUC_Mean_Difference'] = final_summary['aux_learn_AUC_Mean'] - final_summary['stl_learn_AUC_Mean']
+merged_summary = pd.merge(aux_learn_summary, stl_learn_summary, on="Study", how='outer')
+merged_summary = pd.merge(merged_summary, adaloss_learn_summary, on="Study", how='outer')
+merged_summary = pd.merge(merged_summary, gradnorm_learn_summary, on="Study", how='outer')
+final_summary = pd.merge(merged_summary, ol_aux_learn_summary, on="Study", how='outer')
 
-# Sort the DataFrame based on the difference, in descending order
-final_summary_sorted = final_summary.sort_values(by='AUC_Mean_Difference', ascending=False)
+# Sort the DataFrame based on a relevant column, here using 'Study'
+final_summary_sorted = final_summary.sort_values(by='Study')
+
+# Save the merged summary to a csv file
+final_summary_sorted.to_csv("output/summary/oncotypedx_complete_summary.csv", index=False)
 
 print(final_summary_sorted)
-
-# save the summary to a csv file
-final_summary_sorted.to_csv("output/oncotypedx_stl_v_aux_summary.csv", index=False)
