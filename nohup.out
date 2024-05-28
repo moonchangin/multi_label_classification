@@ -1,0 +1,984 @@
+Running iteration with seed 0
+Matplotlib created a temporary cache directory at /tmp/matplotlib-tj2k40dl because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.054093426949269066
+Validation loss decreased (inf --> 0.054093).  Saving model ...
+Validation Loss: 0.054349841902384885
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05455364216421101
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05442681163549423
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.054528499877936135
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05422527796110591
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05429009609931224
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05435071130459373
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05432234120530051
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05454863839455553
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.054575676350174726
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.5024
+AUPR for main task: 0.5825
+Running iteration with seed 1
+Matplotlib created a temporary cache directory at /tmp/matplotlib-wablktca because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.054225590784807466
+Validation loss decreased (inf --> 0.054226).  Saving model ...
+Validation Loss: 0.05455859770645966
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05460609515776505
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.054754615132067655
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.054741863966793626
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05475798470748437
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05478026174210213
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05474311304656235
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05466660957884144
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.054759193916578554
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05462916718946921
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.5715
+AUPR for main task: 0.5748
+Running iteration with seed 2
+Matplotlib created a temporary cache directory at /tmp/matplotlib-ylm9scjg because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.054635438665344906
+Validation loss decreased (inf --> 0.054635).  Saving model ...
+Validation Loss: 0.05484307637891254
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.055019326910779286
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05476011829199018
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05481388721917126
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.054677104929814466
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05495463714406297
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05480386759783771
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05491896456963307
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05473196526636948
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.054743724396905384
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.5644
+AUPR for main task: 0.6026
+Running iteration with seed 3
+Matplotlib created a temporary cache directory at /tmp/matplotlib-yr3wain2 because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05478040441065221
+Validation loss decreased (inf --> 0.054780).  Saving model ...
+Validation Loss: 0.05496005240727116
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05483430744828405
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05477803955609734
+Validation loss decreased (0.054780 --> 0.054778).  Saving model ...
+Validation Loss: 0.054909855932802766
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05504787219940005
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05490483766472017
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05496530708026241
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.055030642026985016
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05478410533553845
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.054904033002015705
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05496338996532801
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05508703325648565
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05510869068471161
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.3214
+AUPR for main task: 0.4459
+Running iteration with seed 4
+Matplotlib created a temporary cache directory at /tmp/matplotlib-7j0gyc_f because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.055011608713381996
+Validation loss decreased (inf --> 0.055012).  Saving model ...
+Validation Loss: 0.05531694578963357
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05530617305555859
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.055489105449335
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05555417136968793
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.055477523622480596
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05551165000006959
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05549161267038938
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05535859423311981
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.055467333040527395
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05540703388082015
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.5112
+AUPR for main task: 0.5541
+Running iteration with seed 5
+Matplotlib created a temporary cache directory at /tmp/matplotlib-l2db3fq3 because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.053525061019369075
+Validation loss decreased (inf --> 0.053525).  Saving model ...
+Validation Loss: 0.053711495991494204
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05360494020420152
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05367238930351025
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.053672277142067217
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.053795963324405054
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05382894321873381
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05356868134962546
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.053698681194234536
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.053879838034107876
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05371304480610667
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.5415
+AUPR for main task: 0.6403
+Running iteration with seed 6
+Matplotlib created a temporary cache directory at /tmp/matplotlib-4uj6j5sq because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05332155555889413
+Validation loss decreased (inf --> 0.053322).  Saving model ...
+Validation Loss: 0.05346690933849361
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.053503105064501635
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.053368955649234155
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05311274055290867
+Validation loss decreased (0.053322 --> 0.053113).  Saving model ...
+Validation Loss: 0.053304584646547165
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05342363546023498
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05329110694898141
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05345061652966448
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.053201878695069135
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05341538565384375
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.053371154678028984
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.053251688645498174
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05353502999689128
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.053570722003240846
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.4014
+AUPR for main task: 0.4672
+Running iteration with seed 7
+Matplotlib created a temporary cache directory at /tmp/matplotlib-_vjz3o15 because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.0532146020716912
+Validation loss decreased (inf --> 0.053215).  Saving model ...
+Validation Loss: 0.05349938299607586
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05333746748196112
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05338388731753504
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05347438045852893
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.053502562078269755
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05343525605024518
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05347140072970777
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05341913279246639
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05350233735264959
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.0534123733035616
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.6063
+AUPR for main task: 0.5798
+Running iteration with seed 8
+Matplotlib created a temporary cache directory at /tmp/matplotlib-j_u3vmhr because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05376432070860992
+Validation loss decreased (inf --> 0.053764).  Saving model ...
+Validation Loss: 0.05377119225827423
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05373888694354006
+Validation loss decreased (0.053764 --> 0.053739).  Saving model ...
+Validation Loss: 0.05368957890046609
+Validation loss decreased (0.053739 --> 0.053690).  Saving model ...
+Validation Loss: 0.053692131026371104
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.053670295287628435
+Validation loss decreased (0.053690 --> 0.053670).  Saving model ...
+Validation Loss: 0.05373708319825095
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05380396524796615
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05366854198478364
+Validation loss decreased (0.053670 --> 0.053669).  Saving model ...
+Validation Loss: 0.053691516856889464
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05365908276793119
+Validation loss decreased (0.053669 --> 0.053659).  Saving model ...
+Validation Loss: 0.05372008137606286
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05359139635756209
+Validation loss decreased (0.053659 --> 0.053591).  Saving model ...
+Validation Loss: 0.05358338637931927
+Validation loss decreased (0.053591 --> 0.053583).  Saving model ...
+Validation Loss: 0.05352685489767307
+Validation loss decreased (0.053583 --> 0.053527).  Saving model ...
+Validation Loss: 0.053582937028762455
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05366446540967838
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05374427602903263
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.053693546334633954
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.053633710419809494
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05357152636389475
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05381221918238176
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05378042000371057
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.0536350513229499
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05354929363002648
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.3421
+AUPR for main task: 0.4942
+Running iteration with seed 9
+Matplotlib created a temporary cache directory at /tmp/matplotlib-1dlwg8ob because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.050589772595747096
+Validation loss decreased (inf --> 0.050590).  Saving model ...
+Validation Loss: 0.0506836168367315
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05069967465022126
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05070970519571691
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05075675470603479
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.050611345802207254
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.050736761173686466
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05078313298322059
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.050707323829064496
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05059807022681107
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05069629797661627
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.4869
+AUPR for main task: 0.6873
+Running iteration with seed 10
+Matplotlib created a temporary cache directory at /tmp/matplotlib-fial5ft_ because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.054108135200835565
+Validation loss decreased (inf --> 0.054108).  Saving model ...
+Validation Loss: 0.05445132364292402
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.054344103646439476
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.054357305471156095
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.054358903419327094
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.054243083137112694
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.0543675268622669
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05461693132245863
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.054291821814872125
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.054327499121427536
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05419928540249128
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.5056
+AUPR for main task: 0.4989
+Running iteration with seed 11
+Matplotlib created a temporary cache directory at /tmp/matplotlib-5jqnsh67 because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.0527530261189551
+Validation loss decreased (inf --> 0.052753).  Saving model ...
+Validation Loss: 0.05275992142993051
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05276141738569414
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05283152432860555
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05284084560903343
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05277547864495097
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05266468438345033
+Validation loss decreased (0.052753 --> 0.052665).  Saving model ...
+Validation Loss: 0.0528175525769994
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05279599683913025
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.052880561533006465
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.0527583780522282
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05280084756983293
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05270034205671903
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.052750924853859724
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.052657656572960516
+Validation loss decreased (0.052665 --> 0.052658).  Saving model ...
+Validation Loss: 0.052765489631407966
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05271748765497594
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05271814129239804
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.052891601279780674
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.052720965867912445
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.052776987991622976
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.052737260489044965
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05260031448828208
+Validation loss decreased (0.052658 --> 0.052600).  Saving model ...
+Validation Loss: 0.05276329342175175
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.0528636162949575
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.052760221366141294
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05284406043387748
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.052741908443135185
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.052762662740172564
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05271199718117714
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05278507579822798
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05279231816530228
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05273983536942585
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.4431
+AUPR for main task: 0.5048
+Running iteration with seed 12
+Matplotlib created a temporary cache directory at /tmp/matplotlib-dpjd3a0u because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.053958037717116845
+Validation loss decreased (inf --> 0.053958).  Saving model ...
+Validation Loss: 0.054118182409454034
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05419228719295682
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05406992550234537
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05406214407569653
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05407896225114126
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05422223419756503
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05401237621097951
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05421811704700057
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.054249529902999465
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05406416439124056
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.4141
+AUPR for main task: 0.4294
+Running iteration with seed 13
+Matplotlib created a temporary cache directory at /tmp/matplotlib-8xee1zzz because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.052496228971191355
+Validation loss decreased (inf --> 0.052496).  Saving model ...
+Validation Loss: 0.05308971161375175
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05297448496158059
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05301648901926505
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05290224030613899
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.0529684118322424
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.0530194323006514
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05290348243874472
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05297050584812422
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05288721188097387
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05306162695224221
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.4605
+AUPR for main task: 0.5553
+Running iteration with seed 14
+Matplotlib created a temporary cache directory at /tmp/matplotlib-fzxiwo3o because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05295019707566983
+Validation loss decreased (inf --> 0.052950).  Saving model ...
+Validation Loss: 0.05328300524805043
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05326526340197872
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.0531489405076246
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05315899365657085
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05313881436312521
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05304292831066493
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.053081036620848884
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05310194375547203
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.053291068085142085
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05326377912550359
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.5447
+AUPR for main task: 0.5860
+Running iteration with seed 15
+Matplotlib created a temporary cache directory at /tmp/matplotlib-n_j9d7ns because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05284033655314832
+Validation loss decreased (inf --> 0.052840).  Saving model ...
+Validation Loss: 0.05325691985922891
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05302478755648072
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.053107036932094676
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05310402689753352
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05309201857528171
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05306147632969392
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05299072471019384
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05287436949642929
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.053026455580382735
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05306269530508969
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.4903
+AUPR for main task: 0.6393
+Running iteration with seed 16
+Matplotlib created a temporary cache directory at /tmp/matplotlib-layl1tf6 because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05418134682081841
+Validation loss decreased (inf --> 0.054181).  Saving model ...
+Validation Loss: 0.05463783030171652
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05436250597641275
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.054446490934571705
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05454678863689706
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05439494419339541
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05442829812700684
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.0545847363568641
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05456043336842511
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05451727839740547
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05459427591916677
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.2663
+AUPR for main task: 0.4182
+Running iteration with seed 17
+Matplotlib created a temporary cache directory at /tmp/matplotlib-jfqkzs46 because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05340150864543142
+Validation loss decreased (inf --> 0.053402).  Saving model ...
+Validation Loss: 0.05405030731816549
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05401407232558405
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05391033185092178
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.053812906448100065
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05401593285637933
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05396666085800609
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05405676032643061
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05395593222331356
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05399312391071706
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05399731385546762
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.5223
+AUPR for main task: 0.5281
+Running iteration with seed 18
+Matplotlib created a temporary cache directory at /tmp/matplotlib-33ci5c_m because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05185901091710941
+Validation loss decreased (inf --> 0.051859).  Saving model ...
+Validation Loss: 0.0522610221964282
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05215076045007319
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05204501707811613
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05225078821987719
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05227537896182086
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05228114571120288
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05214433855301625
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05218074370074917
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05220951633276166
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05208485714487127
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.6627
+AUPR for main task: 0.5743
+Running iteration with seed 19
+Matplotlib created a temporary cache directory at /tmp/matplotlib-66e03r4v because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05244872175358437
+Validation loss decreased (inf --> 0.052449).  Saving model ...
+Validation Loss: 0.0525748960271075
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05258912945518623
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05253053204836072
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05258410081670091
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05265580409684697
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.052565662039292825
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05272016905852266
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05256676029514622
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.0526817126854046
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05265247670782579
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.5048
+AUPR for main task: 0.4878
+Running iteration with seed 20
+Matplotlib created a temporary cache directory at /tmp/matplotlib-_cymizuf because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05503473048274581
+Validation loss decreased (inf --> 0.055035).  Saving model ...
+Validation Loss: 0.055308601441415584
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.055299002878569266
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.055209227006983115
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05513590725289809
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.055272155013438816
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05532977176276413
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.055223269941839015
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05517932087988467
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05520505297022897
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.055271499563713335
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.5650
+AUPR for main task: 0.6539
+Running iteration with seed 21
+Matplotlib created a temporary cache directory at /tmp/matplotlib-4a8uyf_y because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05404255448563679
+Validation loss decreased (inf --> 0.054043).  Saving model ...
+Validation Loss: 0.054342612020067266
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05441926449940011
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05426644564077661
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.054473285236068675
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05430623667465674
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05434267998144433
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.054308178457053935
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05435023557495426
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05428052824494001
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05433047351402205
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.4242
+AUPR for main task: 0.4826
+Running iteration with seed 22
+Matplotlib created a temporary cache directory at /tmp/matplotlib-iw5por6z because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05311408850389558
+Validation loss decreased (inf --> 0.053114).  Saving model ...
+Validation Loss: 0.053291361980341574
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.053325492687322
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05338515874904555
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.053401279691103344
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05333055374590126
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.053420191177645245
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05332441124561671
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.053352797454273376
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05337084417004843
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.053149730470534916
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.6069
+AUPR for main task: 0.6520
+Running iteration with seed 23
+Matplotlib created a temporary cache directory at /tmp/matplotlib-uy8n1f9v because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05432390361218839
+Validation loss decreased (inf --> 0.054324).  Saving model ...
+Validation Loss: 0.0548112741797357
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05479022951142208
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05462895696227615
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.054833513961450475
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.0548876063847864
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05470402538776398
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05478360151519646
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.055039451835123265
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05465472741304217
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.054853771586675905
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.5866
+AUPR for main task: 0.6550
+Running iteration with seed 24
+Matplotlib created a temporary cache directory at /tmp/matplotlib-1bqmfaq4 because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.052827337404360644
+Validation loss decreased (inf --> 0.052827).  Saving model ...
+Validation Loss: 0.05306220477497255
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05286951846367604
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05286082031356322
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05288375078423603
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05298183928873088
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05305495284296371
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05298408946475467
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05286261529938595
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05284386631604787
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.052887076260270297
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.4756
+AUPR for main task: 0.4304
+Running iteration with seed 25
+Matplotlib created a temporary cache directory at /tmp/matplotlib-4w167t4d because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05300266134577829
+Validation loss decreased (inf --> 0.053003).  Saving model ...
+Validation Loss: 0.05346309262755755
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05351486832306192
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05352124007972511
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05353381857275963
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.053490289260406755
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.053520099536792654
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05356789360175262
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05349580520713652
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.053525213454220746
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05360787361860275
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.5994
+AUPR for main task: 0.5218
+Running iteration with seed 26
+Matplotlib created a temporary cache directory at /tmp/matplotlib-gu9u4y90 because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05137483594385353
+Validation loss decreased (inf --> 0.051375).  Saving model ...
+Validation Loss: 0.05149789144461219
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05150966235512012
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.0515734794977549
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.051483754874081224
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05151805543416255
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.051432801662264646
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.051468109258928814
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05149104899248561
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.05135728811492791
+Validation loss decreased (0.051375 --> 0.051357).  Saving model ...
+Validation Loss: 0.0514972840209265
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.0515516319790402
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05159629669946593
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05154317879193538
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05149074724397144
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05150820516251229
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.0514456439461257
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05152490724985664
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.0516355191734997
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.0514833936216058
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.6491
+AUPR for main task: 0.6283
+Running iteration with seed 27
+Matplotlib created a temporary cache directory at /tmp/matplotlib-akduy3u3 because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05297283687301584
+Validation loss decreased (inf --> 0.052973).  Saving model ...
+Validation Loss: 0.053434223440047855
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.053195480156589196
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05331817672059343
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.053387106371087
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.053251321150644404
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.053376468552930934
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05334828854412646
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05331107390088004
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.053341961490946846
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05330613044065398
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.4673
+AUPR for main task: 0.5536
+Running iteration with seed 28
+Matplotlib created a temporary cache directory at /tmp/matplotlib-xox3d8dr because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05332701945224324
+Validation loss decreased (inf --> 0.053327).  Saving model ...
+Validation Loss: 0.05327022881121249
+Validation loss decreased (0.053327 --> 0.053270).  Saving model ...
+Validation Loss: 0.0533159688316487
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.0532275728277258
+Validation loss decreased (0.053270 --> 0.053228).  Saving model ...
+Validation Loss: 0.0533392323634109
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05320039290834118
+Validation loss decreased (0.053228 --> 0.053200).  Saving model ...
+Validation Loss: 0.05350366234779358
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.053493128132981224
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05327073343702265
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.05329353291843388
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05330534410235044
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05337950486589123
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.053180518081864796
+Validation loss decreased (0.053200 --> 0.053181).  Saving model ...
+Validation Loss: 0.05331074315551165
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05325118633540901
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.0535365352155389
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.053225746327960816
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.053173409925924765
+Validation loss decreased (0.053181 --> 0.053173).  Saving model ...
+Validation Loss: 0.05333744925824371
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05339717905263643
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05338300170527922
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.053208812668516826
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05322510890058569
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.05324498100860699
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05337266845477594
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.053428168333060036
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.053372407483088004
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.05350453940195006
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.6027
+AUPR for main task: 0.6939
+Running iteration with seed 29
+Matplotlib created a temporary cache directory at /tmp/matplotlib-fc2xk3hy because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Validation Loss: 0.05365693659798519
+Validation loss decreased (inf --> 0.053657).  Saving model ...
+Validation Loss: 0.053936852796657664
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05365160933217487
+Validation loss decreased (0.053657 --> 0.053652).  Saving model ...
+Validation Loss: 0.05395222183417629
+EarlyStopping counter: 1 out of 10
+Validation Loss: 0.05397324958765829
+EarlyStopping counter: 2 out of 10
+Validation Loss: 0.05383104055717185
+EarlyStopping counter: 3 out of 10
+Validation Loss: 0.053959167184861934
+EarlyStopping counter: 4 out of 10
+Validation Loss: 0.05373512047368127
+EarlyStopping counter: 5 out of 10
+Validation Loss: 0.053945542690721715
+EarlyStopping counter: 6 out of 10
+Validation Loss: 0.05388062256010803
+EarlyStopping counter: 7 out of 10
+Validation Loss: 0.05380596290971782
+EarlyStopping counter: 8 out of 10
+Validation Loss: 0.0538414305931813
+EarlyStopping counter: 9 out of 10
+Validation Loss: 0.0537743189850369
+EarlyStopping counter: 10 out of 10
+Early stopping
+### Test Evaluation ###
+AUROC for main task: 0.5190
+AUPR for main task: 0.5628
+All iterations completed.
+Files concatenated and original files removed.

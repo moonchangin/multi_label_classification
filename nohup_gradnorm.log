@@ -1,0 +1,205 @@
+Running iteration with seed 0
+Matplotlib created a temporary cache directory at /tmp/matplotlib-6yyewm_u because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Epoch 1, Validation AUROC: 0.7776
+Validation AUROC improved to 0.7776, saving model...
+Validation AUROC is greater than 0.7. Stopping early.
+### Test Evaluation ###
+AUROC for main task: 0.6462
+AUPR for main task: 0.4133
+Running iteration with seed 1
+Matplotlib created a temporary cache directory at /tmp/matplotlib-19ggdmr0 because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Epoch 1, Validation AUROC: 0.5923
+Validation AUROC improved to 0.5923, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 2, Validation AUROC: 0.7157
+Validation AUROC improved to 0.7157, saving model...
+Validation AUROC is greater than 0.7. Stopping early.
+### Test Evaluation ###
+AUROC for main task: 0.7922
+AUPR for main task: 0.7164
+Running iteration with seed 2
+Matplotlib created a temporary cache directory at /tmp/matplotlib-a2awzgjo because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Epoch 1, Validation AUROC: 0.6898
+Validation AUROC improved to 0.6898, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 2, Validation AUROC: 0.6831
+Validation AUROC did not improve. Patience: 2/10
+Epoch 3, Validation AUROC: 0.6353
+Validation AUROC did not improve. Patience: 3/10
+Epoch 4, Validation AUROC: 0.6925
+Validation AUROC improved to 0.6925, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 5, Validation AUROC: 0.6299
+Validation AUROC did not improve. Patience: 2/10
+Epoch 6, Validation AUROC: 0.6302
+Validation AUROC did not improve. Patience: 3/10
+Epoch 7, Validation AUROC: 0.5420
+Validation AUROC did not improve. Patience: 4/10
+Epoch 8, Validation AUROC: 0.7146
+Validation AUROC improved to 0.7146, saving model...
+Validation AUROC is greater than 0.7. Stopping early.
+### Test Evaluation ###
+AUROC for main task: 0.7000
+AUPR for main task: 0.5907
+Running iteration with seed 3
+Matplotlib created a temporary cache directory at /tmp/matplotlib-yzkodm_r because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Epoch 1, Validation AUROC: 0.6803
+Validation AUROC improved to 0.6803, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 2, Validation AUROC: 0.7169
+Validation AUROC improved to 0.7169, saving model...
+Validation AUROC is greater than 0.7. Stopping early.
+### Test Evaluation ###
+AUROC for main task: 0.7222
+AUPR for main task: 0.5148
+Running iteration with seed 4
+Matplotlib created a temporary cache directory at /tmp/matplotlib-l6cpiguk because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Epoch 1, Validation AUROC: 0.6803
+Validation AUROC improved to 0.6803, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 2, Validation AUROC: 0.5256
+Validation AUROC did not improve. Patience: 2/10
+Epoch 3, Validation AUROC: 0.6598
+Validation AUROC did not improve. Patience: 3/10
+Epoch 4, Validation AUROC: 0.6713
+Validation AUROC did not improve. Patience: 4/10
+Epoch 5, Validation AUROC: 0.6035
+Validation AUROC did not improve. Patience: 5/10
+Epoch 6, Validation AUROC: 0.6397
+Validation AUROC did not improve. Patience: 6/10
+Epoch 7, Validation AUROC: 0.5659
+Validation AUROC did not improve. Patience: 7/10
+Epoch 8, Validation AUROC: 0.6306
+Validation AUROC did not improve. Patience: 8/10
+Epoch 9, Validation AUROC: 0.6990
+Validation AUROC improved to 0.6990, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 10, Validation AUROC: 0.7655
+Validation AUROC improved to 0.7655, saving model...
+Validation AUROC is greater than 0.7. Stopping early.
+### Test Evaluation ###
+AUROC for main task: 0.5778
+AUPR for main task: 0.3106
+Running iteration with seed 5
+Matplotlib created a temporary cache directory at /tmp/matplotlib-q_ro07e9 because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Epoch 1, Validation AUROC: 0.4593
+Validation AUROC improved to 0.4593, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 2, Validation AUROC: 0.6365
+Validation AUROC improved to 0.6365, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 3, Validation AUROC: 0.5477
+Validation AUROC did not improve. Patience: 2/10
+Epoch 4, Validation AUROC: 0.6962
+Validation AUROC improved to 0.6962, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 5, Validation AUROC: 0.6256
+Validation AUROC did not improve. Patience: 2/10
+Epoch 6, Validation AUROC: 0.6286
+Validation AUROC did not improve. Patience: 3/10
+Epoch 7, Validation AUROC: 0.5421
+Validation AUROC did not improve. Patience: 4/10
+Epoch 8, Validation AUROC: 0.4871
+Validation AUROC did not improve. Patience: 5/10
+Epoch 9, Validation AUROC: 0.6990
+Validation AUROC improved to 0.6990, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 10, Validation AUROC: 0.6052
+Validation AUROC did not improve. Patience: 2/10
+Epoch 11, Validation AUROC: 0.5661
+Validation AUROC did not improve. Patience: 3/10
+Epoch 12, Validation AUROC: 0.5173
+Validation AUROC did not improve. Patience: 4/10
+Epoch 13, Validation AUROC: 0.5569
+Validation AUROC did not improve. Patience: 5/10
+Epoch 14, Validation AUROC: 0.6917
+Validation AUROC did not improve. Patience: 6/10
+Epoch 15, Validation AUROC: 0.6298
+Validation AUROC did not improve. Patience: 7/10
+Epoch 16, Validation AUROC: 0.6701
+Validation AUROC did not improve. Patience: 8/10
+Epoch 17, Validation AUROC: 0.5103
+Validation AUROC did not improve. Patience: 9/10
+Epoch 18, Validation AUROC: 0.6445
+Validation AUROC did not improve. Patience: 10/10
+Early stopping triggered.
+### Test Evaluation ###
+AUROC for main task: 0.8036
+AUPR for main task: 0.4750
+Running iteration with seed 6
+Matplotlib created a temporary cache directory at /tmp/matplotlib-fdkq70pi because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Epoch 1, Validation AUROC: 0.4461
+Validation AUROC improved to 0.4461, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 2, Validation AUROC: 0.6789
+Validation AUROC improved to 0.6789, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 3, Validation AUROC: 0.5335
+Validation AUROC did not improve. Patience: 2/10
+Epoch 4, Validation AUROC: 0.6214
+Validation AUROC did not improve. Patience: 3/10
+Epoch 5, Validation AUROC: 0.5388
+Validation AUROC did not improve. Patience: 4/10
+Epoch 6, Validation AUROC: 0.6686
+Validation AUROC did not improve. Patience: 5/10
+Epoch 7, Validation AUROC: 0.7399
+Validation AUROC improved to 0.7399, saving model...
+Validation AUROC is greater than 0.7. Stopping early.
+### Test Evaluation ###
+AUROC for main task: 0.5692
+AUPR for main task: 0.3705
+Running iteration with seed 7
+Matplotlib created a temporary cache directory at /tmp/matplotlib-z3n31q2b because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+run_oncotypedx_gradnorm_learn.sh: line 13: 29032 Terminated              python oncotypedx_MLC_gradnorm.py --mccv=$i --main_task_file="$main_task_file"
+Running iteration with seed 8
+Matplotlib created a temporary cache directory at /tmp/matplotlib-qwrlz6fx because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Epoch 1, Validation AUROC: 0.4835
+Validation AUROC improved to 0.4835, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 2, Validation AUROC: 0.4658
+Validation AUROC did not improve. Patience: 2/10
+Epoch 3, Validation AUROC: 0.6068
+Validation AUROC improved to 0.6068, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 4, Validation AUROC: 0.2770
+Validation AUROC did not improve. Patience: 2/10
+Epoch 5, Validation AUROC: 0.5853
+Validation AUROC did not improve. Patience: 3/10
+Epoch 6, Validation AUROC: 0.7515
+Validation AUROC improved to 0.7515, saving model...
+Validation AUROC is greater than 0.7. Stopping early.
+### Test Evaluation ###
+AUROC for main task: 0.6667
+AUPR for main task: 0.4554
+Running iteration with seed 9
+Matplotlib created a temporary cache directory at /tmp/matplotlib-q5160e0w because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+Epoch 1, Validation AUROC: 0.6017
+Validation AUROC improved to 0.6017, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 2, Validation AUROC: 0.5219
+Validation AUROC did not improve. Patience: 2/10
+Epoch 3, Validation AUROC: 0.6530
+Validation AUROC improved to 0.6530, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 4, Validation AUROC: 0.6868
+Validation AUROC improved to 0.6868, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 5, Validation AUROC: 0.5582
+Validation AUROC did not improve. Patience: 2/10
+Epoch 6, Validation AUROC: 0.6953
+Validation AUROC improved to 0.6953, saving model...
+Validation AUROC did not improve. Patience: 1/10
+Epoch 7, Validation AUROC: 0.6258
+Validation AUROC did not improve. Patience: 2/10
+Epoch 8, Validation AUROC: 0.6674
+Validation AUROC did not improve. Patience: 3/10
+Epoch 9, Validation AUROC: 0.5609
+Validation AUROC did not improve. Patience: 4/10
+Epoch 10, Validation AUROC: 0.7613
+Validation AUROC improved to 0.7613, saving model...
+Validation AUROC is greater than 0.7. Stopping early.
+### Test Evaluation ###
+AUROC for main task: 0.6607
+AUPR for main task: 0.4125
+Running iteration with seed 10
+Matplotlib created a temporary cache directory at /tmp/matplotlib-v8fw58rq because the default path (/home/cimoon/.config/matplotlib) is not a writable directory; it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
